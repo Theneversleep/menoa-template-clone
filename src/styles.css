@@ -205,6 +205,7 @@
 .site-header--scrolled :focus-visible { outline-color: oklch(.99 0 0); }
 .site-header--scrolled a:hover, .site-header--scrolled button:hover { color: oklch(.99 0 0 / .82); }
 .hero-stage { position: relative; isolation: isolate; overflow: hidden; padding-bottom: 8rem; color: oklch(.99 0 0); background: linear-gradient(to bottom, oklch(.13 .045 265) 0%, oklch(.13 .045 265) 79%, oklch(1 0 0) 100%); }
+.hero-stage::after { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 6rem; pointer-events: none; background: linear-gradient(to bottom, oklch(1 0 0 / 0), oklch(1 0 0) 72%); }
 .hero-stage > :not(.hero-atmosphere) { position: relative; z-index: 1; }
 .hero-stage .text-muted-foreground { color: oklch(.94 .01 260 / .9); }
 .hero-stage .bg-primary { background: oklch(.99 0 0); color: oklch(.19 .02 260); }

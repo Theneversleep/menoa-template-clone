@@ -95,6 +95,7 @@ const fragmentShader = `
       - vec3(0.18, 0.13, 0.02) * blueGlow * hazeBand * (0.6 + driftingMist * 0.5)
       - vec3(0.07, 0.17, 0.02) * violetGlow * hazeBand * (0.5 + fineMist * 0.55);
     color = mix(color, pearl, fadeToWhite);
+    color = mix(vec3(1.0), color, smoothstep(0.055, 0.13, uv.y));
 
     gl_FragColor = vec4(color, 1.0);
   }
