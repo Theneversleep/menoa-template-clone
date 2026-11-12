@@ -190,10 +190,12 @@
 
 /* A moving, pointer-responsive blue-violet atmosphere inspired by Codex. */
 .site-header--home { position: fixed; inset: 0 0 auto; z-index: 50; border: 0; transition: background .35s ease, color .35s ease; }
-.site-header--top { color: oklch(.18 .025 260); background: linear-gradient(to bottom, oklch(.81 .06 260 / .2), transparent); }
-.site-header--top .text-muted-foreground { color: oklch(.34 .025 260); }
-.site-header--top .bg-secondary { background: oklch(1 0 0 / .72); color: oklch(.18 .025 260); }
-.site-header--top .site-mobile-menu { background: oklch(.84 .06 265 / .97); border-color: oklch(.4 .06 260 / .16); backdrop-filter: blur(22px); }
+.site-header--top { color: oklch(.99 0 0); text-shadow: 0 1px 14px oklch(.12 .02 260 / .65); background: linear-gradient(to bottom, oklch(.16 .04 265 / .5), oklch(.16 .04 265 / .3) 65%, transparent); }
+.site-header--top .text-muted-foreground { color: oklch(.99 0 0 / .86); }
+.site-header--top .bg-secondary { background: oklch(1 0 0 / .72); color: oklch(.18 .025 260); text-shadow: none; }
+.site-header--top [role="group"] .text-muted-foreground { color: oklch(.32 .02 260); }
+.site-header--top .site-mobile-menu { background: oklch(.84 .06 265 / .97); color: oklch(.18 .025 260); border-color: oklch(.4 .06 260 / .16); backdrop-filter: blur(22px); text-shadow: none; }
+.site-header--top nav a:hover { color: oklch(.99 0 0); opacity: .78; }
 .site-header--scrolled { color: oklch(.99 0 0); background: oklch(.17 .045 265 / .88); border-bottom: 1px solid oklch(1 0 0 / .15); backdrop-filter: blur(20px); }
 .site-header--scrolled .text-muted-foreground { color: oklch(.9 .01 260 / .8); }
 .site-header--scrolled .bg-secondary { background: oklch(1 0 0 / .14); color: oklch(.99 0 0); }
