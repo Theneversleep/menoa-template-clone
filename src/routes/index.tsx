@@ -1,23 +1,215 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const F = "https://framerusercontent.com/images/";
+const AVATAR = F + "0QVvrsrn66FVCuVCrOrsdFtR3n4.jpeg";
+const GCAL = F + "crFI6QWSAh3udwJztJVauKe2o.png";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Alex Morgan — Visual & Product Designer" },
+      { name: "description", content: "Helping companies stand out in crowded markets through thoughtful brand and product design." },
+      { property: "og:title", content: "Alex Morgan — Design that makes people trust and buy" },
+      { property: "og:description", content: "Brand identity, web and product design by Alex Morgan, based in Berlin." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const logos = ["3GFa9kAEOvT9yjqUydfHB7Y7U4.svg", "OQKjLsG01J0m96Kc3jxDrQ3S90.svg", "fuDF94TQejUHYbWI3aHgnSSCs.svg", "ZGBMuDdG55ET3AjXGqOtYSfRNGg.svg"];
+const gallery = ["z6nacw1Lth7eA4zP6w6yUH7JgKs.jpg", "EE5G4vMR32xKcyESnMpywzlU8k.jpg", "nNqKRJIOJnl5wNqsU49ETg7kA.jpg", "TYjgz4BtTj5PLJq6po3O10JfK9M.png", "SEnIgMp5yFfjGRUFF0cecNGIac4.jpg", "mdM59UhlLhFwUS7Bje43Zj8Plg.png"];
+const projects = [
+  ["Auten - AI Agency", "Web design", "Sguuf5oH1GkCwjRLUTFhb0EyDQ.jpg"],
+  ["Renance - Dashboard", "Product design", "0oS2bSg3piTgoG5fgAU8qk9UTo.jpg"],
+  ["Sona - Automation platform", "Product design", "7dXjYpmSu0uw6mxHj7QHxzj3W58.jpg"],
+  ["Kael - Operations workflow", "Product design", "e7zhD278S41ZcqdwY6XYsLHio.jpg"],
+];
+const services = ["Web design", "Product design", "UI/UX design", "Brand identity", "Animation", "Web apps", "Mobile apps", "Framer development"];
+const steps = [
+  ["Book a free discovery call", "A casual 30-minute conversation about your project, goals, and where you need help. No commitments, no pressure."],
+  ["Receive your action plan", "Within 48 hours you'll receive a detailed scope, timeline, and pricing. No guesswork, no hidden costs."],
+  ["Let's start designing", "Once we're aligned, I get to work immediately. You'll see first concepts within the first week."],
+];
+const testimonials = [
+  ["Alex completely transformed how our brand shows up. Within a month of the rebrand, our inbound leads doubled and every client meeting starts with 'I love your website.'", "Sarah Chen", "Founder at Oliva", "dpW4xdKpiRSE9C0EmH2QYexAww.jpg"],
+  ["Our dashboard was a mess — users were churning because they couldn't find basic features. Alex redesigned the entire experience and task completion jumped 34% in the first sprint.", "Marcus Webb", "Head of Product at Kael", "I86MHKGPaFDTIrHaPKmykuvSMV8.jpg"],
+  ["We needed a brand and a website in 5 weeks before our funding round. Alex delivered both — on time, on brief, and better than what we imagined. Investors noticed immediately.", "Lina Torres", "CEO at Sona", "FE0q0PK12lWa8evg3XMr8bDkc.jpg"],
+  ["I've worked with dozens of designers. Alex is the rare one who thinks like a strategist and executes like an artist. I keep sending clients his way because he makes me look good.", "David Park", "Creative Director at Haus Studio", "iDmd2L3Z98P1qTmr0Grfms40c.jpg"],
+  ["First project was a logo. Then a website. Then a full product redesign. Three years later, Alex is still my first call for anything design. That says everything.", "Nina Alvarez", "Founder at Flux", "LgRpToSROKNhVrGJalRX62CT0o.jpg"],
+  ["Alex didn't just make it look better — he challenged our assumptions, simplified the user flow, and shipped a design system our dev team actually enjoys using. That never happens.", "James Okafor", "Product Lead at Prism", "uWH0Dto9sxWjmDTJXU4fRUeTp18.jpg"],
+];
+const faqs = [
+  ["What's your design process like?", "Every project starts with strategy. I spend time understanding your business, audience, and goals before opening any design tool. From there it's a focused cycle of concepts, feedback, and refinement until we land on something that works — not just looks good."],
+  ["How long does a typical project take?", "It depends on scope. A brand identity usually takes 4-6 weeks. A product design project runs 6-10 weeks. A landing page can be done in 1-2 weeks. I'll give you a clear timeline before we start so there are no surprises."],
+  ["How much do you charge?", "I price by project, not by hour. A brand identity starts at $5,000, product design at $8,000, and web design at $3,000. Every project is scoped individually — I'll send a detailed proposal after our first call."],
+  ["Do you work with startups?", "Both. I've worked with pre-seed startups building their first brand and Series B companies redesigning their core product. What matters isn't size — it's whether you care about doing design right."],
+  ["Can you work with my existing team?", "Absolutely. I regularly collaborate with in-house developers, product managers, and marketing teams. I adapt to your tools and workflows — Slack, Notion, Linear, whatever you already use."],
+  ["What do I need to have ready before we start?", "A clear idea of what you need and why. You don't need a brief, mood board, or wireframes — that's my job. A 30-minute call is usually enough to figure out if we're a good fit."],
+];
+
+function Badge() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium">
+      <span className="size-2 rounded-full bg-success" /> Visual & Product Designer · Available for projects
+    </span>
+  );
+}
+function Eyebrow({ children }: { children: string }) {
+  return <p className="text-sm font-medium text-muted-foreground">{children}</p>;
+}
+function H2({ children }: { children: string }) {
+  return <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] md:text-5xl">{children}</h2>;
+}
+function Ctas() {
+  return (
+    <div className="flex flex-wrap justify-center gap-3">
+      <a href="https://cal.com/" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-medium text-primary-foreground transition hover:opacity-85">
+        <img src={GCAL} alt="" className="size-4" /> Book a free call
+      </a>
+      <a href="https://telegram.org/" className="inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 font-medium transition hover:bg-accent">
+        <TgIcon /> Let's chat
+      </a>
+    </div>
+  );
+}
+function TgIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-5"><circle cx="12" cy="12" r="12" fill="#2AABEE" /><path d="M5.5 11.8l11-4.3c.5-.2 1 .1.8.9l-1.9 8.9c-.1.6-.5.8-1 .5l-2.9-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.4-4.9c.2-.2-.1-.3-.4-.1l-6.6 4.2-2.8-.9c-.6-.2-.6-.6.2-.9z" fill="#fff" /></svg>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+          <a href="#" className="flex items-center gap-3">
+            <img src={AVATAR} alt="Alex Morgan" className="size-11 rounded-full object-cover" />
+            <div className="leading-tight">
+              <p className="font-medium">Alex Morgan</p>
+              <p className="text-sm text-muted-foreground">Based in Berlin · CET</p>
+            </div>
+          </a>
+          <nav className="flex items-center gap-8">
+            <div className="hidden gap-8 md:flex">
+              <a href="#projects" className="hover:text-muted-foreground">Projects</a>
+              <a href="#about" className="hover:text-muted-foreground">About me</a>
+              <a href="#testimonials" className="hover:text-muted-foreground">Testimonials</a>
+            </div>
+            <a href="https://telegram.org/" className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2.5 font-medium hover:bg-accent"><TgIcon /> Let's chat</a>
+          </nav>
+        </div>
+      </header>
+
+      <section className="px-5 pt-28 text-center">
+        <Badge />
+        <h1 className="mx-auto mt-6 max-w-3xl text-5xl font-semibold leading-[1] tracking-[-0.05em] md:text-[5.5rem]">Design that makes people trust and buy</h1>
+        <p className="mx-auto mt-6 max-w-md text-lg text-muted-foreground">Helping companies stand out in crowded markets through thoughtful brand and product design</p>
+        <div className="mt-8"><Ctas /></div>
+        <div className="mx-auto mt-12 max-w-md overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_20%,black_80%,transparent)]">
+          <div className="flex w-max animate-marquee gap-10">
+            {[...logos, ...logos, ...logos, ...logos].map((l, i) => <img key={i} src={F + l} alt="" className="h-6 opacity-60" />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-24 overflow-hidden">
+        <div className="flex w-max animate-marquee gap-6 [animation-duration:60s]">
+          {[...gallery, ...gallery].map((g, i) => (
+            <img key={i} src={F + g + "?width=1000"} alt="" className="h-[420px] w-auto rounded-3xl object-cover" />
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-32">
+        <div className="text-center"><Eyebrow>Selected projects</Eyebrow><H2>Projects built on strategy, finished with craft.</H2></div>
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {projects.map(([t, c, img]) => (
+            <a key={t} href="#" className="group">
+              <div className="overflow-hidden rounded-3xl bg-card">
+                <img src={F + img} alt={t} className="aspect-[1016/938] w-full object-cover transition duration-500 group-hover:scale-105" />
+              </div>
+              <div className="mt-4 flex justify-between"><p className="font-medium">{t}</p><p className="text-muted-foreground">{c}</p></div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" className="mx-auto grid max-w-5xl scroll-mt-24 items-center gap-12 px-5 py-16 md:grid-cols-2">
+        <div>
+          <Eyebrow>About</Eyebrow><H2>Hi, I am Alex Morgan</H2>
+          <p className="mt-6 text-lg text-muted-foreground">A multidisciplinary designer with 6+ years of experience crafting brand identities and digital products for startups and established companies across Europe and the US</p>
+          <div className="mt-10 grid grid-cols-2 gap-6">
+            {[["6+ years", "Design experience"], ["40+", "Project delivered"]].map(([a, b]) => (
+              <div key={a} className="rounded-2xl bg-card p-6"><p className="text-4xl font-semibold tracking-tight">{a}</p><p className="mt-1 text-muted-foreground">{b}</p></div>
+            ))}
+          </div>
+        </div>
+        <img src={F + "wOXGNwristHrL3O30j9xrcyy5g.png"} alt="Alex Morgan" className="w-full rounded-3xl bg-card object-cover" />
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 py-32 text-center">
+        <Eyebrow>What I do</Eyebrow><H2>Everything your brand needs to show up right</H2>
+        <div className="mx-auto mt-12 flex max-w-3xl flex-wrap justify-center gap-3">
+          {services.map((s) => <span key={s} className="rounded-full bg-secondary px-6 py-3 text-lg font-medium">{s}</span>)}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 py-16">
+        <div className="text-center"><Eyebrow>How it works</Eyebrow><H2>Three steps to your next big project.</H2></div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {steps.map(([t, d], i) => (
+            <div key={t} className="rounded-3xl bg-card p-8">
+              <p className="text-sm font-medium text-muted-foreground">0{i + 1}</p>
+              <h3 className="mt-16 text-xl font-semibold tracking-tight">{t}</h3>
+              <p className="mt-3 text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="testimonials" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-32">
+        <div className="text-center"><Eyebrow>Kind words</Eyebrow><H2>Words from people I've worked with.</H2></div>
+        <div className="mt-14 columns-1 gap-6 md:columns-2 lg:columns-3">
+          {testimonials.map(([q, n, r, img]) => (
+            <figure key={n} className="mb-6 break-inside-avoid rounded-3xl bg-card p-7">
+              <blockquote className="leading-relaxed">"{q}"</blockquote>
+              <figcaption className="mt-6 flex items-center gap-3">
+                <img src={F + img} alt={n} className="size-11 rounded-full object-cover" />
+                <div><p className="font-medium">{n}</p><p className="text-sm text-muted-foreground">{r}</p></div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 py-16">
+        <div className="rounded-[2rem] bg-card px-6 py-20 text-center">
+          <Badge />
+          <h2 className="mx-auto mt-6 max-w-2xl text-4xl font-semibold tracking-[-0.04em] md:text-6xl">Have a project in mind? Let's make it real.</h2>
+          <p className="mx-auto mt-6 max-w-lg text-muted-foreground">I'm currently available for new projects starting March 2025. Whether you need a full brand identity, a product redesign, or a strategic creative partner</p>
+          <div className="mt-8"><Ctas /></div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 py-24">
+        {faqs.map(([q, a]) => (
+          <details key={q} className="group border-b border-border py-6">
+            <summary className="flex cursor-pointer list-none items-center justify-between text-lg font-medium">
+              {q}<span className="text-2xl text-muted-foreground transition group-open:rotate-45">+</span>
+            </summary>
+            <p className="mt-4 text-muted-foreground">{a}</p>
+          </details>
+        ))}
+      </section>
+
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-5xl justify-between px-5 py-8 text-sm text-muted-foreground">
+          <p>© 2026 Alex Morgan</p><p>Based in Berlin · CET</p>
+        </div>
+      </footer>
     </div>
   );
 }
