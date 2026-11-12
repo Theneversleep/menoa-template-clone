@@ -70,14 +70,18 @@ const fragmentShader = `
     float mist = exp(-dot((warped - mistCenter) * vec2(0.85, 1.5), (warped - mistCenter) * vec2(0.85, 1.5)) * 2.7);
 
     vec3 color = vec3(0.045, 0.065, 0.18);
-    color += vec3(0.21, 0.31, 0.8) * blue * (0.36 + fold * 0.72);
-    color += vec3(0.4, 0.3, 0.8) * violet * (0.3 + wisps * 0.72);
-    color += vec3(0.44, 0.48, 0.67) * mist * (0.12 + wisps * 0.44);
+    color += vec3(0.19, 0.29, 0.72) * blue * (0.36 + fold * 0.72);
+    color += vec3(0.32, 0.28, 0.7) * violet * (0.3 + wisps * 0.72);
+    color += vec3(0.5, 0.51, 0.6) * mist * (0.12 + wisps * 0.48);
     color += vec3(0.19, 0.22, 0.5) * wisps * 0.22;
     color += vec3(0.33, 0.38, 0.95) * cursorField * 0.38;
     float readingZone = exp(-dot(p * vec2(0.95, 1.3), p * vec2(0.95, 1.3)) * 1.8);
     color *= 1.0 - readingZone * 0.22;
     color *= 0.75 + 0.25 * smoothstep(0.05, 0.65, uv.y);
+    float upperMist = smoothstep(0.58, 0.92, uv.y);
+    vec3 sky = mix(vec3(0.55, 0.68, 0.94), vec3(0.6, 0.55, 0.88), smoothstep(0.15, 0.9, uv.x));
+    sky += vec3(0.16, 0.15, 0.12) * exp(-pow((uv.x - 0.52) * 2.7, 2.0));
+    color = mix(color, sky, upperMist * 0.95);
     color *= 0.94 + noise(uv * resolution * 0.3) * 0.06;
 
     gl_FragColor = vec4(color, 1.0);

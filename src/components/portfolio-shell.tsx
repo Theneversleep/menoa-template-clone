@@ -38,8 +38,17 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
   ];
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const home = pathname === "/";
 
   useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => {
+    if (!home) return;
+    const onScroll = () => setScrolled(window.scrollY > 64);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [home]);
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (event: KeyboardEvent) => {
@@ -51,7 +60,13 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
+      <header
+        className={
+          home
+            ? `site-header site-header--home ${scrolled ? "site-header--scrolled" : "site-header--top"}`
+            : "site-header sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur"
+        }
+      >
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <Link to="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
             <img
@@ -115,7 +130,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
           <nav
             id="mobile-menu"
             aria-label={fr ? "Navigation mobile" : "Mobile navigation"}
-            className="border-t border-border bg-background px-5 py-8 lg:hidden"
+            className="site-mobile-menu border-t border-border bg-background px-5 py-8 lg:hidden"
           >
             <div className="mx-auto flex max-w-5xl flex-col gap-5 text-3xl font-medium tracking-tight">
               {nav.map((item) => (

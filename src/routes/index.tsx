@@ -354,7 +354,7 @@ const copy = {
 function Badge() {
   const { language } = useLanguage();
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium">
+    <span className="hero-badge inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium">
       <span className="pulse-dot size-2 rounded-full bg-success" /> {copy[language].badge}
     </span>
   );
@@ -417,7 +417,7 @@ function Index() {
         className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-primary"
       />
 
-      <section className="hero-stage px-5 pt-28 text-center">
+      <section className="hero-stage px-5 pt-40 text-center">
         <HeroAtmosphere />
         <div className="intro">
           <Badge />

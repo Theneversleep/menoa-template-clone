@@ -191,14 +191,28 @@
 @keyframes social-wave { 0% { height: 20%; opacity: .3; } 100% { height: 100%; opacity: 1; } }
 
 /* A moving, pointer-responsive blue-violet atmosphere inspired by Codex. */
+.site-header--home { position: fixed; inset: 0 0 auto; z-index: 50; border: 0; transition: background .35s ease, color .35s ease; }
+.site-header--top { color: oklch(.18 .025 260); background: linear-gradient(to bottom, oklch(.81 .06 260 / .2), transparent); }
+.site-header--top .text-muted-foreground { color: oklch(.34 .025 260); }
+.site-header--top .bg-secondary { background: oklch(1 0 0 / .72); color: oklch(.18 .025 260); }
+.site-header--top .site-mobile-menu { background: oklch(.84 .06 265 / .97); border-color: oklch(.4 .06 260 / .16); backdrop-filter: blur(22px); }
+.site-header--scrolled { color: oklch(.99 0 0); background: oklch(.17 .045 265 / .88); border-bottom: 1px solid oklch(1 0 0 / .15); backdrop-filter: blur(20px); }
+.site-header--scrolled .text-muted-foreground { color: oklch(.9 .01 260 / .8); }
+.site-header--scrolled .bg-secondary { background: oklch(1 0 0 / .14); color: oklch(.99 0 0); }
+.site-header--scrolled .bg-secondary:hover { background: oklch(1 0 0 / .23); }
+.site-header--scrolled .bg-background { background: oklch(.98 0 0); color: oklch(.2 .02 260); }
+.site-header--scrolled .site-mobile-menu { background: oklch(.18 .04 265 / .97); color: oklch(.99 0 0); border-color: oklch(1 0 0 / .15); }
+.site-header--scrolled :focus-visible { outline-color: oklch(.99 0 0); }
+.site-header--scrolled a:hover, .site-header--scrolled button:hover { color: oklch(.99 0 0 / .82); }
 .hero-stage { position: relative; isolation: isolate; overflow: hidden; padding-bottom: 7rem; color: oklch(.99 0 0); background: linear-gradient(to bottom, oklch(.13 .045 265) 0%, oklch(.13 .045 265) 79%, oklch(1 0 0) 100%); }
 .hero-stage > :not(.hero-atmosphere) { position: relative; z-index: 1; }
 .hero-stage .text-muted-foreground { color: oklch(.94 .01 260 / .9); }
 .hero-stage .bg-primary { background: oklch(.99 0 0); color: oklch(.19 .02 260); }
 .hero-stage .bg-secondary { background: oklch(1 0 0 / .13); color: oklch(.99 0 0); border: 1px solid oklch(1 0 0 / .24); }
 .hero-stage .bg-secondary:hover { background: oklch(1 0 0 / .22); }
+.hero-stage .hero-badge { background: oklch(1 0 0 / .82); color: oklch(.2 .02 260); border-color: oklch(1 0 0 / .55); }
 .hero-stage img[src*="edenglowy"] { filter: brightness(0) invert(1); }
-.hero-atmosphere { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(110deg, oklch(.33 .15 262), oklch(.24 .08 274) 52%, oklch(.37 .15 290)); -webkit-mask-image: linear-gradient(#000 0%, #000 79%, transparent 100%); mask-image: linear-gradient(#000 0%, #000 79%, transparent 100%); }
+.hero-atmosphere { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(to bottom, oklch(.76 .075 255) 0%, oklch(.65 .08 275) 19%, oklch(.3 .1 267) 48%, oklch(.2 .06 269) 100%); -webkit-mask-image: linear-gradient(#000 0%, #000 79%, transparent 100%); mask-image: linear-gradient(#000 0%, #000 79%, transparent 100%); }
 .hero-current { position: absolute; z-index: 2; inset: 0; display: block; width: 100%; height: 100%; filter: blur(11px); transform: scale(1.04); }
 .hero-cloud { position: absolute; display: block; border-radius: 50%; filter: blur(62px); will-change: transform; }
 .hero-cloud--left { width: 82%; height: 115%; top: -28%; left: -34%; background: radial-gradient(ellipse at 53% 50%, oklch(.52 .2 260 / .77), oklch(.34 .13 253 / .45) 46%, transparent 73%); animation: hero-drift-left 13s ease-in-out infinite alternate; }
