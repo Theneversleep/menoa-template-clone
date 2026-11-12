@@ -95,11 +95,37 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const logos = [
-  "3GFa9kAEOvT9yjqUydfHB7Y7U4.svg",
-  "OQKjLsG01J0m96Kc3jxDrQ3S90.svg",
-  "fuDF94TQejUHYbWI3aHgnSSCs.svg",
-  "ZGBMuDdG55ET3AjXGqOtYSfRNGg.svg",
+type BrandLogo = {
+  name: string;
+  href: string;
+  image?: string;
+  wordmark?: string;
+  className?: string;
+};
+
+const logos: BrandLogo[] = [
+  {
+    name: "Le Roi du Smartphone",
+    href: "https://leroidusmartphone.com/",
+    image: "/brands/le-roi-du-smartphone.png",
+  },
+  {
+    name: "Le Roi des Affaires",
+    href: "https://leroidesaffaires.com/",
+    wordmark: "LE ROI DES AFFAIRES",
+    className: "text-xl font-extrabold tracking-tight",
+  },
+  {
+    name: "EdenGlowy",
+    href: "https://edenglowy.com/",
+    image: "/brands/edenglowy.png",
+  },
+  {
+    name: "clicandlive",
+    href: "https://clicandlive.com/",
+    wordmark: "clicandlive",
+    className: "text-2xl font-extrabold tracking-[-0.065em]",
+  },
 ];
 const gallery = [
   "z6nacw1Lth7eA4zP6w6yUH7JgKs.jpg",
@@ -265,9 +291,31 @@ function Index() {
           style={{ ["--d" as string]: "900ms" }}
           className="intro mx-auto mt-12 max-w-md overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_20%,black_80%,transparent)]"
         >
-          <div className="flex w-max animate-marquee gap-10">
-            {[...logos, ...logos, ...logos, ...logos].map((l, i) => (
-              <img key={i} src={F + l} alt="" className="h-6 opacity-60" />
+          <div className="flex w-max animate-marquee [animation-duration:28s]">
+            {[0, 1].map((copy) => (
+              <div
+                key={copy}
+                aria-hidden={copy === 1}
+                className="flex shrink-0 items-center gap-10 pr-10"
+              >
+                {logos.map((logo) => (
+                  <a
+                    key={logo.href}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={copy === 1 ? -1 : 0}
+                    aria-label={`Visiter ${logo.name}`}
+                    className="flex h-10 shrink-0 items-center opacity-65 transition-opacity hover:opacity-100 focus-visible:opacity-100"
+                  >
+                    {logo.image ? (
+                      <img src={logo.image} alt="" className="h-10 w-auto object-contain" />
+                    ) : (
+                      <span className={logo.className}>{logo.wordmark}</span>
+                    )}
+                  </a>
+                ))}
+              </div>
             ))}
           </div>
         </div>
