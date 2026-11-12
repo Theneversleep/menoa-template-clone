@@ -81,10 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Alex Morgan — Visual & Product Designer" },
+      { title: "Andy Degali — Visual & Product Designer" },
       { name: "description", content: "Brand and product design that makes people trust and buy." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Alex Morgan — Visual & Product Designer" },
+      { property: "og:title", content: "Andy Degali — Visual & Product Designer" },
       { property: "og:description", content: "Brand and product design that makes people trust and buy." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

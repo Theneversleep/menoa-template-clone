@@ -7,10 +7,10 @@ const GCAL = F + "crFI6QWSAh3udwJztJVauKe2o.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Morgan — Visual & Product Designer" },
+      { title: "Andy Degali — Visual & Product Designer" },
       { name: "description", content: "Helping companies stand out in crowded markets through thoughtful brand and product design." },
-      { property: "og:title", content: "Alex Morgan — Design that makes people trust and buy" },
-      { property: "og:description", content: "Brand identity, web and product design by Alex Morgan, based in Berlin." },
+      { property: "og:title", content: "Andy Degali — Design that makes people trust and buy" },
+      { property: "og:description", content: "Brand identity, web and product design by Andy Degali, based in Paris." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -33,12 +33,12 @@ const steps = [
   ["Let's start designing", "Once we're aligned, I get to work immediately. You'll see first concepts within the first week."],
 ];
 const testimonials = [
-  ["Alex completely transformed how our brand shows up. Within a month of the rebrand, our inbound leads doubled and every client meeting starts with 'I love your website.'", "Sarah Chen", "Founder at Oliva", "dpW4xdKpiRSE9C0EmH2QYexAww.jpg"],
-  ["Our dashboard was a mess — users were churning because they couldn't find basic features. Alex redesigned the entire experience and task completion jumped 34% in the first sprint.", "Marcus Webb", "Head of Product at Kael", "I86MHKGPaFDTIrHaPKmykuvSMV8.jpg"],
-  ["We needed a brand and a website in 5 weeks before our funding round. Alex delivered both — on time, on brief, and better than what we imagined. Investors noticed immediately.", "Lina Torres", "CEO at Sona", "FE0q0PK12lWa8evg3XMr8bDkc.jpg"],
-  ["I've worked with dozens of designers. Alex is the rare one who thinks like a strategist and executes like an artist. I keep sending clients his way because he makes me look good.", "David Park", "Creative Director at Haus Studio", "iDmd2L3Z98P1qTmr0Grfms40c.jpg"],
-  ["First project was a logo. Then a website. Then a full product redesign. Three years later, Alex is still my first call for anything design. That says everything.", "Nina Alvarez", "Founder at Flux", "LgRpToSROKNhVrGJalRX62CT0o.jpg"],
-  ["Alex didn't just make it look better — he challenged our assumptions, simplified the user flow, and shipped a design system our dev team actually enjoys using. That never happens.", "James Okafor", "Product Lead at Prism", "uWH0Dto9sxWjmDTJXU4fRUeTp18.jpg"],
+  ["Andy completely transformed how our brand shows up. Within a month of the rebrand, our inbound leads doubled and every client meeting starts with 'I love your website.'", "Sarah Chen", "Founder at Oliva", "dpW4xdKpiRSE9C0EmH2QYexAww.jpg"],
+  ["Our dashboard was a mess — users were churning because they couldn't find basic features. Andy redesigned the entire experience and task completion jumped 34% in the first sprint.", "Marcus Webb", "Head of Product at Kael", "I86MHKGPaFDTIrHaPKmykuvSMV8.jpg"],
+  ["We needed a brand and a website in 5 weeks before our funding round. Andy delivered both — on time, on brief, and better than what we imagined. Investors noticed immediately.", "Lina Torres", "CEO at Sona", "FE0q0PK12lWa8evg3XMr8bDkc.jpg"],
+  ["I've worked with dozens of designers. Andy is the rare one who thinks like a strategist and executes like an artist. I keep sending clients his way because he makes me look good.", "David Park", "Creative Director at Haus Studio", "iDmd2L3Z98P1qTmr0Grfms40c.jpg"],
+  ["First project was a logo. Then a website. Then a full product redesign. Three years later, Andy is still my first call for anything design. That says everything.", "Nina Alvarez", "Founder at Flux", "LgRpToSROKNhVrGJalRX62CT0o.jpg"],
+  ["Andy didn't just make it look better — he challenged our assumptions, simplified the user flow, and shipped a design system our dev team actually enjoys using. That never happens.", "James Okafor", "Product Lead at Prism", "uWH0Dto9sxWjmDTJXU4fRUeTp18.jpg"],
 ];
 const faqs = [
   ["What's your design process like?", "Every project starts with strategy. I spend time understanding your business, audience, and goals before opening any design tool. From there it's a focused cycle of concepts, feedback, and refinement until we land on something that works — not just looks good."],
@@ -86,10 +86,10 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <a href="#" className="flex items-center gap-3">
-            <img src={AVATAR} alt="Alex Morgan" className="size-11 rounded-full bg-card object-cover object-top" />
+            <img src={AVATAR} alt="Andy Degali" className="size-11 rounded-full bg-card object-cover object-top" />
             <div className="leading-tight">
-              <p className="font-medium">Alex Morgan</p>
-              <p className="text-sm text-muted-foreground">Based in Berlin · CET</p>
+              <p className="font-medium">Andy Degali</p>
+              <p className="text-sm text-muted-foreground">Based in Paris · CET</p>
             </div>
           </a>
           <nav className="flex items-center gap-8">
@@ -139,7 +139,7 @@ function Index() {
 
       <section id="about" className="mx-auto grid max-w-5xl scroll-mt-24 items-center gap-12 px-5 py-16 md:grid-cols-2">
         <div>
-          <Eyebrow>About</Eyebrow><H2>Hi, I am Alex Morgan</H2>
+          <Eyebrow>About</Eyebrow><H2>Hi, I am Andy Degali</H2>
           <p className="mt-6 text-lg text-muted-foreground">A multidisciplinary designer with 6+ years of experience crafting brand identities and digital products for startups and established companies across Europe and the US</p>
           <div className="mt-10 grid grid-cols-2 gap-6">
             {[["6+ years", "Design experience"], ["40+", "Project delivered"]].map(([a, b]) => (
@@ -147,7 +147,7 @@ function Index() {
             ))}
           </div>
         </div>
-        <img src={F + "wOXGNwristHrL3O30j9xrcyy5g.png"} alt="Alex Morgan" className="w-full rounded-3xl bg-card object-cover" />
+        <img src={F + "wOXGNwristHrL3O30j9xrcyy5g.png"} alt="Andy Degali" className="w-full rounded-3xl bg-card object-cover" />
       </section>
 
       <section className="mx-auto max-w-5xl px-5 py-32 text-center">
@@ -207,7 +207,7 @@ function Index() {
 
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-5xl justify-between px-5 py-8 text-sm text-muted-foreground">
-          <p>© 2026 Alex Morgan</p><p>Based in Berlin · CET</p>
+          <p>© 2026 Andy Degali</p><p>Based in Paris · CET</p>
         </div>
       </footer>
     </div>
