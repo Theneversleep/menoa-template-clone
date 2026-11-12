@@ -33,6 +33,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
   const nav = [
     { label: fr ? "Projets" : "Projects", to: "/projects" as const },
     { label: fr ? "À propos" : "About me", to: "/about-me" as const },
+    { label: fr ? "Réseaux" : "Social", to: "/" as const, hash: "social" },
     { label: fr ? "Témoignages" : "Testimonials", to: "/" as const, hash: "testimonials" },
   ];
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -67,7 +68,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
           </Link>
           <nav
             aria-label={fr ? "Navigation principale" : "Primary navigation"}
-            className="hidden items-center gap-5 lg:flex"
+            className="hidden items-center gap-4 lg:flex"
           >
             {nav.map((item) => (
               <Link

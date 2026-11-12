@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode, type MouseEvent } from "react";
 import { PortfolioShell } from "../components/portfolio-shell";
+import { SocialSection } from "../components/social-section";
 import { projects as portfolioProjects } from "../lib/portfolio";
 import { useLanguage, type Language } from "../lib/i18n";
 
@@ -415,7 +416,12 @@ function Index() {
         className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-primary"
       />
 
-      <section className="px-5 pt-28 text-center">
+      <section className="hero-stage px-5 pt-28 text-center">
+        <div className="hero-atmosphere" aria-hidden="true">
+          <span className="hero-cloud hero-cloud--left" />
+          <span className="hero-cloud hero-cloud--right" />
+          <span className="hero-cloud hero-cloud--low" />
+        </div>
         <div className="intro">
           <Badge />
         </div>
@@ -542,6 +548,8 @@ function Index() {
           />
         </div>
       </section>
+
+      <SocialSection />
 
       <section className="mx-auto max-w-5xl px-5 py-32 text-center">
         <Eyebrow>{t.servicesLabel}</Eyebrow>
