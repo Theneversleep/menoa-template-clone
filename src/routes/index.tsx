@@ -387,7 +387,7 @@ function Ctas() {
           to="/projects"
           className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-medium text-primary-foreground transition hover:opacity-85"
         >
-          {t.explore} ↗
+          {t.explore}
         </Link>
       </Magnetic>
       <Magnetic>
@@ -395,7 +395,7 @@ function Ctas() {
           to="/about-me"
           className="inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 font-medium transition hover:bg-accent"
         >
-          {t.aboutLink} ↗
+          {t.aboutLink}
         </Link>
       </Magnetic>
     </div>
@@ -533,7 +533,7 @@ function Index() {
             data-reveal
             className="mt-8 inline-flex rounded-full bg-secondary px-5 py-3 font-medium hover:bg-accent"
           >
-            {t.moreAbout} ↗
+            {t.moreAbout}
           </Link>
         </div>
         <div data-clip className="overflow-hidden rounded-3xl bg-card">

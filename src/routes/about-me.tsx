@@ -104,7 +104,7 @@ function AboutPage() {
             to="/projects"
             className="mt-8 inline-flex rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground"
           >
-            {t.explore} ↗
+            {t.explore}
           </Link>
         </div>
       </section>

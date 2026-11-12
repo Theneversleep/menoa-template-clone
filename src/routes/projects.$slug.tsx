@@ -136,7 +136,7 @@ function ProjectPage() {
                     className="aspect-[1016/938] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <p className="mt-4 font-medium">{item.name} ↗</p>
+                <p className="mt-4 font-medium">{item.name}</p>
               </Link>
             ))}
           </div>

@@ -1,4 +1,4 @@
-import { Instagram, ArrowUpRight } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../lib/i18n";
 
@@ -144,9 +144,9 @@ function SocialCard({ platform }: { platform: Platform }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${fr ? "Ouvrir" : "Open"} ${account.handle} ${fr ? "sur" : "on"} ${isInstagram ? "Instagram" : "TikTok"}`}
-          className="social-card-link inline-flex size-11 items-center justify-center rounded-full border border-foreground/15 bg-white text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+          className="social-card-link inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
         >
-          <ArrowUpRight size={21} aria-hidden="true" />
+          {fr ? "Profil" : "Profile"}
         </a>
       </div>
       <div className="border-t border-foreground/10 px-3 pb-7 pt-6 sm:px-6">
@@ -177,8 +177,7 @@ function SocialCard({ platform }: { platform: Platform }) {
                 onClick={() => setTiktokVisible(true)}
                 className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#111] transition-colors hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                {fr ? "Afficher le profil" : "Show the profile"}{" "}
-                <ArrowUpRight size={17} aria-hidden="true" />
+                {fr ? "Afficher le profil" : "Show the profile"}
               </button>
             </div>
           </div>

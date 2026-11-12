@@ -100,7 +100,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
               hash="contact"
               className="rounded-full bg-secondary px-4 py-2.5 font-medium hover:bg-accent"
             >
-              {fr ? "Parlons-en" : "Let's chat"} ↗
+              {fr ? "Parlons-en" : "Let's chat"}
             </Link>
             <LanguageSwitch />
           </nav>
@@ -144,7 +144,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
                 </Link>
               ))}
               <Link to="/" hash="contact" onClick={() => setMenuOpen(false)}>
-                {fr ? "Parlons-en" : "Let's chat"} ↗
+                {fr ? "Parlons-en" : "Let's chat"}
               </Link>
             </div>
           </nav>
