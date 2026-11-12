@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode, type MouseEvent } from "react";
 import { PortfolioShell } from "../components/portfolio-shell";
+import { HeroAtmosphere } from "../components/hero-atmosphere";
 import { SocialSection } from "../components/social-section";
 import { projects as portfolioProjects } from "../lib/portfolio";
 import { useLanguage, type Language } from "../lib/i18n";
@@ -109,7 +110,7 @@ const logos: BrandLogo[] = [
   {
     name: "Le Roi du Smartphone",
     href: "https://leroidusmartphone.com/",
-    image: "/brands/le-roi-du-smartphone.png",
+    image: "/brands/le-roi-du-smartphone-light.png",
   },
   {
     name: "Le Roi des Affaires",
@@ -417,11 +418,7 @@ function Index() {
       />
 
       <section className="hero-stage px-5 pt-28 text-center">
-        <div className="hero-atmosphere" aria-hidden="true">
-          <span className="hero-cloud hero-cloud--left" />
-          <span className="hero-cloud hero-cloud--right" />
-          <span className="hero-cloud hero-cloud--low" />
-        </div>
+        <HeroAtmosphere />
         <div className="intro">
           <Badge />
         </div>
