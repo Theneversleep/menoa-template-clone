@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 const F = "https://framerusercontent.com/images/";
-const AVATAR = F + "0QVvrsrn66FVCuVCrOrsdFtR3n4.jpeg";
+const AVATAR = F + "wOXGNwristHrL3O30j9xrcyy5g.png";
 const GCAL = F + "crFI6QWSAh3udwJztJVauKe2o.png";
 
 export const Route = createFileRoute("/")({
@@ -86,7 +86,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <a href="#" className="flex items-center gap-3">
-            <img src={AVATAR} alt="Alex Morgan" className="size-11 rounded-full object-cover" />
+            <img src={AVATAR} alt="Alex Morgan" className="size-11 rounded-full bg-card object-cover object-top" />
             <div className="leading-tight">
               <p className="font-medium">Alex Morgan</p>
               <p className="text-sm text-muted-foreground">Based in Berlin · CET</p>
@@ -105,7 +105,7 @@ function Index() {
 
       <section className="px-5 pt-28 text-center">
         <Badge />
-        <h1 className="mx-auto mt-6 max-w-3xl text-5xl font-semibold leading-[1] tracking-[-0.05em] md:text-[5.5rem]">Design that makes people trust and buy</h1>
+        <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1] tracking-[-0.05em] md:text-[5.5rem]">Design that makes people trust and buy</h1>
         <p className="mx-auto mt-6 max-w-md text-lg text-muted-foreground">Helping companies stand out in crowded markets through thoughtful brand and product design</p>
         <div className="mt-8"><Ctas /></div>
         <div className="mx-auto mt-12 max-w-md overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_20%,black_80%,transparent)]">
