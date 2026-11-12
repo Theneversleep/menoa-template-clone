@@ -84,6 +84,18 @@ const fragmentShader = `
     color = mix(color, sky, upperMist * 0.95);
     color *= 0.94 + noise(uv * resolution * 0.3) * 0.06;
 
+    float driftingMist = clouds(vec2(uv.x * 4.8 + t * 0.34, uv.y * 5.5 - t * 0.22));
+    float fineMist = clouds(vec2(uv.x * 13.0 - t * 0.16, uv.y * 12.0 + t * 0.11));
+    float softEdge = 0.068 + (driftingMist - 0.5) * 0.05 + (fineMist - 0.5) * 0.018 + sin(uv.x * 8.0 + t * 0.7) * 0.012;
+    float fadeToWhite = 1.0 - smoothstep(-0.035, 0.105, uv.y - softEdge);
+    float hazeBand = smoothstep(0.0, 0.07, uv.y) * (1.0 - smoothstep(0.16, 0.3, uv.y));
+    float blueGlow = exp(-pow((uv.x - 0.26 - sin(t * 0.4) * 0.07) * 2.5, 2.0));
+    float violetGlow = exp(-pow((uv.x - 0.77 - cos(t * 0.34) * 0.06) * 2.7, 2.0));
+    vec3 pearl = vec3(1.0)
+      - vec3(0.18, 0.13, 0.02) * blueGlow * hazeBand * (0.6 + driftingMist * 0.5)
+      - vec3(0.07, 0.17, 0.02) * violetGlow * hazeBand * (0.5 + fineMist * 0.55);
+    color = mix(color, pearl, fadeToWhite);
+
     gl_FragColor = vec4(color, 1.0);
   }
 `;
