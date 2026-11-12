@@ -1,24 +1,16 @@
-# Menoa Template Clone
+# Andy Degali — portfolio preview
 
-https://menoa-template.framer.website/#testimonialsclone ce template complètement
+A responsive portfolio study based on the [Menoa Framer reference](https://menoa-template.framer.website/). The interface includes the homepage, project listing, four sample case studies, About page, mobile navigation and FAQ interaction.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e49d9eb8-3b5f-4d84-9241-cd5d1aa62c1f).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+This is a design preview. The portrait, project images, project names, service list and testimonials are sample material from the reference layout. They do not represent Andy Degali's real clients, work, experience or endorsements. Replace them with approved content before publishing a personal portfolio. Reference images are currently loaded from `framerusercontent.com`.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+The project uses TanStack Start, React, TypeScript, Tailwind CSS and Bun. With Bun installed:
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
+
+Run `bun run build`, `bun run test` and `bun run lint` to check changes. The production server runs with `bun run start` after building.
