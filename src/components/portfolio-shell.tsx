@@ -1,14 +1,40 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { imageBase } from "../lib/portfolio";
+import { useLanguage } from "../lib/i18n";
 
-const nav = [
-  { label: "Projects", to: "/projects" as const },
-  { label: "About me", to: "/about-me" as const },
-  { label: "Testimonials", to: "/" as const, hash: "testimonials" },
-];
+function LanguageSwitch() {
+  const { language, setLanguage } = useLanguage();
+  return (
+    <div
+      role="group"
+      aria-label={language === "fr" ? "Langue" : "Language"}
+      className="flex rounded-full bg-secondary p-1 text-xs font-semibold"
+    >
+      {(["fr", "en"] as const).map((option) => (
+        <button
+          key={option}
+          type="button"
+          lang={option}
+          aria-pressed={language === option}
+          onClick={() => setLanguage(option)}
+          className={`rounded-full px-2.5 py-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${language === option ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+        >
+          {option.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function PortfolioShell({ children }: { children: ReactNode }) {
+  const { language } = useLanguage();
+  const fr = language === "fr";
+  const nav = [
+    { label: fr ? "Projets" : "Projects", to: "/projects" as const },
+    { label: fr ? "À propos" : "About me", to: "/about-me" as const },
+    { label: fr ? "Témoignages" : "Testimonials", to: "/" as const, hash: "testimonials" },
+  ];
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -34,10 +60,15 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
             />
             <span className="leading-tight">
               <strong className="block font-medium">Andy Degali</strong>
-              <small className="block text-sm text-muted-foreground">Portfolio preview</small>
+              <small className="block text-sm text-muted-foreground">
+                {fr ? "Aperçu du portfolio" : "Portfolio preview"}
+              </small>
             </span>
           </Link>
-          <nav aria-label="Primary navigation" className="hidden items-center gap-8 md:flex">
+          <nav
+            aria-label={fr ? "Navigation principale" : "Primary navigation"}
+            className="hidden items-center gap-5 lg:flex"
+          >
             {nav.map((item) => (
               <Link
                 key={item.label}
@@ -53,25 +84,37 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
               hash="contact"
               className="rounded-full bg-secondary px-4 py-2.5 font-medium hover:bg-accent"
             >
-              Let&apos;s chat ↗
+              {fr ? "Parlons-en" : "Let's chat"} ↗
             </Link>
+            <LanguageSwitch />
           </nav>
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex size-11 items-center justify-center rounded-full bg-secondary text-2xl md:hidden"
-          >
-            {menuOpen ? "×" : "☰"}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageSwitch />
+            <button
+              type="button"
+              aria-label={
+                menuOpen
+                  ? fr
+                    ? "Fermer le menu"
+                    : "Close menu"
+                  : fr
+                    ? "Ouvrir le menu"
+                    : "Open menu"
+              }
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="inline-flex size-11 items-center justify-center rounded-full bg-secondary text-2xl lg:hidden"
+            >
+              {menuOpen ? "×" : "☰"}
+            </button>
+          </div>
         </div>
         {menuOpen && (
           <nav
             id="mobile-menu"
-            aria-label="Mobile navigation"
-            className="border-t border-border bg-background px-5 py-8 md:hidden"
+            aria-label={fr ? "Navigation mobile" : "Mobile navigation"}
+            className="border-t border-border bg-background px-5 py-8 lg:hidden"
           >
             <div className="mx-auto flex max-w-5xl flex-col gap-5 text-3xl font-medium tracking-tight">
               {nav.map((item) => (
@@ -85,7 +128,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
                 </Link>
               ))}
               <Link to="/" hash="contact" onClick={() => setMenuOpen(false)}>
-                Let&apos;s chat ↗
+                {fr ? "Parlons-en" : "Let's chat"} ↗
               </Link>
             </div>
           </nav>
@@ -95,7 +138,11 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-5xl flex-wrap justify-between gap-3 px-5 py-8 text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Andy Degali</p>
-          <p>Portfolio preview · Content in progress</p>
+          <p>
+            {fr
+              ? "Aperçu du portfolio · Contenu en préparation"
+              : "Portfolio preview · Content in progress"}
+          </p>
         </div>
       </footer>
     </div>

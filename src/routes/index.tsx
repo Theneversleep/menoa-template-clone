@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode, type MouseEvent } from "react";
 import { PortfolioShell } from "../components/portfolio-shell";
 import { projects as portfolioProjects } from "../lib/portfolio";
+import { useLanguage, type Language } from "../lib/i18n";
 
 function useMotion() {
   useEffect(() => {
@@ -78,15 +79,15 @@ const F = "https://framerusercontent.com/images/";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Andy Degali — Portfolio preview" },
+      { title: "Andy Degali — Aperçu du portfolio" },
       {
         name: "description",
-        content: "A visual preview of Andy Degali's portfolio, inspired by Menoa.",
+        content: "Un aperçu visuel du portfolio d'Andy Degali, inspiré de Menoa.",
       },
-      { property: "og:title", content: "Andy Degali — Portfolio preview" },
+      { property: "og:title", content: "Andy Degali — Aperçu du portfolio" },
       {
         property: "og:description",
-        content: "A visual portfolio study, ready for real projects and content.",
+        content: "Une étude visuelle prête à accueillir des projets et contenus réels.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -135,7 +136,7 @@ const gallery = [
   "SEnIgMp5yFfjGRUFF0cecNGIac4.jpg",
   "mdM59UhlLhFwUS7Bje43Zj8Plg.png",
 ];
-const services = [
+const servicesEn = [
   "Web design",
   "Product design",
   "UI/UX design",
@@ -145,12 +146,12 @@ const services = [
   "Mobile apps",
   "Framer development",
 ];
-const steps = [
+const stepsEn = [
   ["Start a conversation", "A place to understand the project, the audience and the goal."],
   ["Find the direction", "A clear plan can connect the brief to visual decisions."],
   ["Build the experience", "Concepts, feedback and refinement lead to the final work."],
 ];
-const testimonials = [
+const testimonialsEn = [
   [
     "A real client quote can describe the challenge, the work and the difference it made.",
     "Client quote 01",
@@ -188,7 +189,7 @@ const testimonials = [
     "uWH0Dto9sxWjmDTJXU4fRUeTp18.jpg",
   ],
 ];
-const faqs = [
+const faqsEn = [
   [
     "What's your design process like?",
     "This is demonstration copy. Andy's actual process can be added once the details are provided.",
@@ -212,11 +213,147 @@ const faqs = [
   ],
 ];
 
+const servicesFr = [
+  "Design web",
+  "Design produit",
+  "Design UI/UX",
+  "Identité de marque",
+  "Animation",
+  "Applications web",
+  "Applications mobiles",
+  "Développement Framer",
+];
+const stepsFr = [
+  ["Faire connaissance", "Un échange pour comprendre le projet, son public et son objectif."],
+  ["Définir la direction", "Une ligne claire relie le brief aux choix visuels."],
+  ["Construire l'expérience", "Concepts, retours et ajustements donnent forme au résultat final."],
+];
+const testimonialsFr = [
+  [
+    "Un véritable témoignage client pourra décrire le défi, le travail réalisé et son impact.",
+    "Témoignage 01",
+    "Contenu d'exemple",
+    "dpW4xdKpiRSE9C0EmH2QYexAww.jpg",
+  ],
+  [
+    "Cette carte conserve le rythme de lecture du modèle en attendant un témoignage approuvé.",
+    "Témoignage 02",
+    "Contenu d'exemple",
+    "I86MHKGPaFDTIrHaPKmykuvSMV8.jpg",
+  ],
+  [
+    "Un avis court et précis trouvera sa place ici une fois le portfolio personnalisé.",
+    "Témoignage 03",
+    "Contenu d'exemple",
+    "FE0q0PK12lWa8evg3XMr8bDkc.jpg",
+  ],
+  [
+    "Cet espace est réservé à un avis vérifié d'une personne ayant travaillé avec Andy.",
+    "Témoignage 04",
+    "Contenu d'exemple",
+    "iDmd2L3Z98P1qTmr0Grfms40c.jpg",
+  ],
+  [
+    "Le futur témoignage pourra parler du processus et de la qualité de la collaboration.",
+    "Témoignage 05",
+    "Contenu d'exemple",
+    "LgRpToSROKNhVrGJalRX62CT0o.jpg",
+  ],
+  [
+    "Ajoutez un vrai témoignage avec l'accord de son auteur avant publication.",
+    "Témoignage 06",
+    "Contenu d'exemple",
+    "uWH0Dto9sxWjmDTJXU4fRUeTp18.jpg",
+  ],
+];
+const faqsFr = [
+  [
+    "Comment se déroule votre processus de design ?",
+    "Ce texte est un exemple. La méthode réelle d'Andy pourra être ajoutée quand ses détails seront connus.",
+  ],
+  [
+    "Combien de temps dure généralement un projet ?",
+    "Le calendrier dépend du périmètre. Des durées vérifiées seront ajoutées lorsque l'offre sera définie.",
+  ],
+  ["Quels sont vos tarifs ?", "Les tarifs seront ajoutés après confirmation de l'offre d'Andy."],
+  [
+    "Travaillez-vous avec des startups ?",
+    "La réponse finale décrira les clients avec lesquels Andy travaille réellement.",
+  ],
+  [
+    "Pouvez-vous collaborer avec mon équipe ?",
+    "Cet espace accueillera le fonctionnement réel des collaborations d'Andy.",
+  ],
+  [
+    "Que faut-il préparer avant de commencer ?",
+    "Une liste pratique pourra accompagner le futur processus de contact.",
+  ],
+];
+
+const copy = {
+  fr: {
+    badge: "Design visuel et produit · Aperçu du portfolio",
+    hero: "Un design qui inspire confiance et donne envie d'acheter",
+    heroBody:
+      "Une étude visuelle du portfolio Menoa, prête à être adaptée au travail réel d'Andy Degali.",
+    explore: "Voir les projets",
+    aboutLink: "À propos de moi",
+    visit: "Visiter",
+    sampleVisual: "Visuel d'exemple pour",
+    samplePortrait: "Portrait d'exemple du modèle de référence",
+    projectsLabel: "Projets sélectionnés",
+    projectsTitle: "Des projets pensés avec stratégie, réalisés avec soin.",
+    aboutLabel: "À propos",
+    aboutTitle: "Bonjour, je suis Andy Degali",
+    aboutBody:
+      "Cet espace accueillera l'histoire d'Andy. La mise en page est en place ; sa biographie et son parcours seront ajoutés ensuite.",
+    moreAbout: "En savoir plus sur moi",
+    servicesLabel: "Services d'exemple",
+    servicesTitle: "Tout pour donner à votre marque la présence qu'elle mérite",
+    processLabel: "Comment ça marche",
+    processTitle: "Trois étapes pour votre prochain projet.",
+    testimonialsLabel: "Témoignages · Mise en page d'exemple",
+    testimonialsTitle: "Un espace pour vos témoignages.",
+    samplePortraitAlt: "Portrait d'exemple",
+    contactTitle: "Un projet en tête ? Donnons-lui vie.",
+    contactBody:
+      "Les coordonnées seront ajoutées quand Andy sera prêt. En attendant, découvrez cet aperçu et ses projets d'exemple.",
+  },
+  en: {
+    badge: "Visual & Product Design · Portfolio preview",
+    hero: "Design that makes people trust and buy",
+    heroBody:
+      "A visual study of the Menoa portfolio, ready to be shaped around Andy Degali's real work.",
+    explore: "Explore projects",
+    aboutLink: "About me",
+    visit: "Visit",
+    sampleVisual: "Sample visual for",
+    samplePortrait: "Sample portrait from the reference template",
+    projectsLabel: "Selected projects",
+    projectsTitle: "Projects built on strategy, finished with craft.",
+    aboutLabel: "About",
+    aboutTitle: "Hi, I am Andy Degali",
+    aboutBody:
+      "This is the introduction area for Andy's story. The design is in place; the biography and experience details will follow.",
+    moreAbout: "More about me",
+    servicesLabel: "Example services",
+    servicesTitle: "Everything your brand needs to show up right",
+    processLabel: "How it works",
+    processTitle: "Three steps to your next big project.",
+    testimonialsLabel: "Kind words · Sample layout",
+    testimonialsTitle: "A place for kind words.",
+    samplePortraitAlt: "Sample portrait",
+    contactTitle: "Have a project in mind? Let's make it real.",
+    contactBody:
+      "Contact details will be added when Andy is ready. For now, explore the portfolio preview and the sample projects.",
+  },
+} satisfies Record<Language, Record<string, string>>;
+
 function Badge() {
+  const { language } = useLanguage();
   return (
     <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium">
-      <span className="pulse-dot size-2 rounded-full bg-success" /> Visual & Product Design ·
-      Portfolio preview
+      <span className="pulse-dot size-2 rounded-full bg-success" /> {copy[language].badge}
     </span>
   );
 }
@@ -239,6 +376,8 @@ function H2({ children }: { children: string }) {
   );
 }
 function Ctas() {
+  const { language } = useLanguage();
+  const t = copy[language];
   return (
     <div className="flex flex-wrap justify-center gap-3">
       <Magnetic>
@@ -246,7 +385,7 @@ function Ctas() {
           to="/projects"
           className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-medium text-primary-foreground transition hover:opacity-85"
         >
-          Explore projects ↗
+          {t.explore} ↗
         </Link>
       </Magnetic>
       <Magnetic>
@@ -254,7 +393,7 @@ function Ctas() {
           to="/about-me"
           className="inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 font-medium transition hover:bg-accent"
         >
-          About me ↗
+          {t.aboutLink} ↗
         </Link>
       </Magnetic>
     </div>
@@ -263,6 +402,12 @@ function Ctas() {
 
 function Index() {
   useMotion();
+  const { language } = useLanguage();
+  const t = copy[language];
+  const services = language === "fr" ? servicesFr : servicesEn;
+  const steps = language === "fr" ? stepsFr : stepsEn;
+  const testimonials = language === "fr" ? testimonialsFr : testimonialsEn;
+  const faqs = language === "fr" ? faqsFr : faqsEn;
   return (
     <PortfolioShell>
       <div
@@ -275,14 +420,13 @@ function Index() {
           <Badge />
         </div>
         <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1] tracking-[-0.05em] md:text-[5.5rem]">
-          <Words text="Design that makes people trust and buy" />
+          <Words text={t.hero} />
         </h1>
         <p
           style={{ ["--d" as string]: "600ms" }}
           className="intro mx-auto mt-6 max-w-md text-lg text-muted-foreground"
         >
-          A visual study of the Menoa portfolio, ready to be shaped around Andy Degali&apos;s real
-          work.
+          {t.heroBody}
         </p>
         <div className="intro mt-8" style={{ ["--d" as string]: "750ms" }}>
           <Ctas />
@@ -305,7 +449,7 @@ function Index() {
                     target="_blank"
                     rel="noopener noreferrer"
                     tabIndex={copy === 1 ? -1 : 0}
-                    aria-label={`Visiter ${logo.name}`}
+                    aria-label={`${t.visit} ${logo.name}`}
                     className="flex h-10 shrink-0 items-center opacity-65 transition-opacity hover:opacity-100 focus-visible:opacity-100"
                   >
                     {logo.image ? (
@@ -339,8 +483,8 @@ function Index() {
 
       <section id="projects" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-32">
         <div className="text-center">
-          <Eyebrow>Selected projects</Eyebrow>
-          <H2>Projects built on strategy, finished with craft.</H2>
+          <Eyebrow>{t.projectsLabel}</Eyebrow>
+          <H2>{t.projectsTitle}</H2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {portfolioProjects.map((project, i) => (
@@ -356,13 +500,15 @@ function Index() {
                 <img
                   data-parallax="0.06"
                   src={F + project.image}
-                  alt={`${project.name} sample visual`}
+                  alt={`${t.sampleVisual} ${project.name}`}
                   className="aspect-[1016/938] w-full object-cover transition-[scale] duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="mt-4 flex justify-between">
                 <p className="font-medium">{project.name}</p>
-                <p className="text-muted-foreground">{project.category}</p>
+                <p className="text-muted-foreground">
+                  {language === "fr" ? project.categoryFr : project.category}
+                </p>
               </div>
             </Link>
           ))}
@@ -374,33 +520,32 @@ function Index() {
         className="mx-auto grid max-w-5xl scroll-mt-24 items-center gap-12 px-5 py-16 md:grid-cols-2"
       >
         <div>
-          <Eyebrow>About</Eyebrow>
-          <H2>Hi, I am Andy Degali</H2>
+          <Eyebrow>{t.aboutLabel}</Eyebrow>
+          <H2>{t.aboutTitle}</H2>
           <p data-reveal className="mt-6 text-lg text-muted-foreground">
-            This is the introduction area for Andy&apos;s story. The design is in place; the
-            biography and experience details will follow.
+            {t.aboutBody}
           </p>
           <Link
             to="/about-me"
             data-reveal
             className="mt-8 inline-flex rounded-full bg-secondary px-5 py-3 font-medium hover:bg-accent"
           >
-            More about me ↗
+            {t.moreAbout} ↗
           </Link>
         </div>
         <div data-clip className="overflow-hidden rounded-3xl bg-card">
           <img
             data-parallax="0.05"
             src={F + "wOXGNwristHrL3O30j9xrcyy5g.png"}
-            alt="Sample portrait from the reference template"
+            alt={t.samplePortrait}
             className="w-full object-cover"
           />
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-5 py-32 text-center">
-        <Eyebrow>Example services</Eyebrow>
-        <H2>Everything your brand needs to show up right</H2>
+        <Eyebrow>{t.servicesLabel}</Eyebrow>
+        <H2>{t.servicesTitle}</H2>
         <div className="mx-auto mt-12 flex max-w-3xl flex-wrap justify-center gap-3">
           {services.map((s, i) => (
             <span
@@ -417,8 +562,8 @@ function Index() {
 
       <section className="mx-auto max-w-5xl px-5 py-16">
         <div className="text-center">
-          <Eyebrow>How it works</Eyebrow>
-          <H2>Three steps to your next big project.</H2>
+          <Eyebrow>{t.processLabel}</Eyebrow>
+          <H2>{t.processTitle}</H2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {steps.map(([t, d], i) => (
@@ -438,8 +583,8 @@ function Index() {
 
       <section id="testimonials" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-32">
         <div className="text-center">
-          <Eyebrow>Kind words · Sample layout</Eyebrow>
-          <H2>A place for kind words.</H2>
+          <Eyebrow>{t.testimonialsLabel}</Eyebrow>
+          <H2>{t.testimonialsTitle}</H2>
         </div>
         <div className="mt-14 columns-1 gap-6 md:columns-2 lg:columns-3">
           {testimonials.map(([q, n, r, img], i) => (
@@ -453,7 +598,7 @@ function Index() {
               <figcaption className="mt-6 flex items-center gap-3">
                 <img
                   src={F + img}
-                  alt="Sample portrait"
+                  alt={t.samplePortraitAlt}
                   className="size-11 rounded-full object-cover"
                 />
                 <div>
@@ -470,12 +615,9 @@ function Index() {
         <div data-clip className="rounded-[2rem] bg-card px-6 py-20 text-center">
           <Badge />
           <h2 className="mx-auto mt-6 max-w-2xl text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
-            Have a project in mind? Let's make it real.
+            {t.contactTitle}
           </h2>
-          <p className="mx-auto mt-6 max-w-lg text-muted-foreground">
-            Contact details will be added when Andy is ready. For now, explore the portfolio preview
-            and the sample projects.
-          </p>
+          <p className="mx-auto mt-6 max-w-lg text-muted-foreground">{t.contactBody}</p>
           <div className="mt-8">
             <Ctas />
           </div>
